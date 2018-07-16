@@ -272,6 +272,8 @@ namespace MyKTV
         {
 
         }
+        
+        #region 已点
 
         private void RefreshQueueList()
         {
@@ -291,6 +293,13 @@ namespace MyKTV
                 QueueTab.Controls.Add(label);
             }
         }
+        #endregion
+
+        #region 点歌
+
+        #endregion
+
+        #region 下载
 
         private void BtnMTVSearch_Click(object sender, EventArgs e)
         {
@@ -307,7 +316,7 @@ namespace MyKTV
                 new Task(() =>
                 {
                     var list = new SearchMTV().GetMTVList(searchStr);
-                    Invoke(new Action(() => 
+                    Invoke(new Action(() =>
                     {
                         int i = 0;
                         foreach (var m in list)
@@ -329,17 +338,21 @@ namespace MyKTV
                         BtnMTVSearch.Text = "查询";
                         BtnMTVSearch.Enabled = true;
                     }));
-                   
+
                 }).Start();
             }
         }
+        #endregion
+
+        #region 下载列表
 
         private void Label_DownloadAddEvent(UserControl.DownloadLabel dlabel)
         {
             dlabel.Width = TabDownloadList.Width;
             dlabel.Top = 55 * TabDownloadList.Controls.Count;
             TabDownloadList.Controls.Add(dlabel);
-        }
+        } 
+        #endregion
 
     }
 }

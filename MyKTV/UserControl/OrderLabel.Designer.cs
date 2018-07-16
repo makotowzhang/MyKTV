@@ -41,7 +41,7 @@
             this.labelName.Appearance.Options.UseFont = true;
             this.labelName.Location = new System.Drawing.Point(33, 18);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(46, 21);
+            this.labelName.Size = new System.Drawing.Size(46, 20);
             this.labelName.TabIndex = 5;
             this.labelName.Text = "Name";
             // 
@@ -55,7 +55,7 @@
             this.labelSort.Appearance.Options.UseFont = true;
             this.labelSort.Location = new System.Drawing.Point(10, 18);
             this.labelSort.Name = "labelSort";
-            this.labelSort.Size = new System.Drawing.Size(31, 21);
+            this.labelSort.Size = new System.Drawing.Size(31, 20);
             this.labelSort.TabIndex = 4;
             this.labelSort.Text = "Sort";
             // 
@@ -71,9 +71,10 @@
             this.LabelOrder.Appearance.Options.UseForeColor = true;
             this.LabelOrder.Location = new System.Drawing.Point(207, 13);
             this.LabelOrder.Name = "LabelOrder";
-            this.LabelOrder.Size = new System.Drawing.Size(21, 28);
+            this.LabelOrder.Size = new System.Drawing.Size(21, 26);
             this.LabelOrder.TabIndex = 6;
             this.LabelOrder.Text = "点";
+            this.LabelOrder.Click += new System.EventHandler(this.LabelOrder_Click);
             // 
             // OrderLabel
             // 
