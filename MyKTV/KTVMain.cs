@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using DevExpress.XtraEditors;
+using MyKTV.KTVBusiness;
+using MyKTV.KTVStatus;
+using MyKTV.Properties;
+using System;
 using System.Drawing;
-using System.Text;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using MyKTV.Properties;
-using System.Threading;
-using MyKTV.KTVStatus;
-using MyKTV.KTVEnum;
-using MyKTV.KTVBusiness;
 
 namespace MyKTV
 {
@@ -104,65 +98,7 @@ namespace MyKTV
             //}).Start();
             //KTVPlayer.SetVolume(50);
             //KTVPlayer.Open("http://rtm-live.glueapi.io/smil:ch001.smil/chunklist_b329000_sleng.m3u8");
-            RunTimeData.VideoQueue.Add(new KTVModel.KTVQueue()
-            {
-                Sort = 0,
-                IsPlaying = true,
-                MTV = new KTVModel.MTVInfo()
-                {
-                    MTVName = "告白气球",
-                    Artist = "周杰伦"
-                }
-            });
-            RunTimeData.VideoQueue.Add(new KTVModel.KTVQueue()
-            {
-                Sort = 1,
-                IsPlaying = false,
-                MTV = new KTVModel.MTVInfo()
-                {
-                    MTVName = "唐人",
-                    Artist = "孙子涵"
-                }
-            });
-            RunTimeData.VideoQueue.Add(new KTVModel.KTVQueue()
-            {
-                Sort = 2,
-                IsPlaying = false,
-                MTV = new KTVModel.MTVInfo()
-                {
-                    MTVName = "巴黎夜雨",
-                    Artist = "孙子涵"
-                }
-            });
-            RunTimeData.VideoQueue.Add(new KTVModel.KTVQueue()
-            {
-                Sort = 3,
-                IsPlaying = false,
-                MTV = new KTVModel.MTVInfo()
-                {
-                    MTVName = "枫",
-                    Artist = "周杰伦"
-                }
-            });
-            RunTimeData.VideoQueue.Add(new KTVModel.KTVQueue()
-            {
-                Sort = 4,
-                IsPlaying = false,
-                MTV = new KTVModel.MTVInfo()
-                {
-                    MTVName = "全世界宣布爱你",
-                    Artist = "孙子涵"
-                }
-            }); RunTimeData.VideoQueue.Add(new KTVModel.KTVQueue()
-            {
-                Sort = 5,
-                IsPlaying = false,
-                MTV = new KTVModel.MTVInfo()
-                {
-                    MTVName = "夜曲",
-                    Artist = "周杰伦"
-                }
-            });
+       
 
             foreach (var m in RunTimeData.VideoQueue)
             {
@@ -283,12 +219,10 @@ namespace MyKTV
                 var label = new UserControl.QueueLabel(m);
                 label.Top = 55 * m.Sort;
                 label.Width = QueueTab.Width;
-                if (m.Sort != 0)
+                label.AfterSort += RefreshQueueList;
+                if (m.Sort == 0 || m.Sort == 1)
                 {
-                    label.Click += (s, ev) =>
-                    {
-                        RefreshQueueList();
-                    };
+                    label.HideGoTop();
                 }
                 QueueTab.Controls.Add(label);
             }
@@ -296,7 +230,36 @@ namespace MyKTV
         #endregion
 
         #region 点歌
-
+        private void OrderSearchBtn_Click(object sender, EventArgs e)
+        {
+            OrderPanelBody.Controls.Clear();
+            string orderStr = OrderSearchText.Text;
+            if (string.IsNullOrWhiteSpace(orderStr))
+            {
+                return;
+            }
+            else
+            {
+                int i = 0;
+                foreach (var m in OrderMTV.SearchMyMTV(orderStr))
+                {
+                    
+                        var label = new UserControl.OrderLabel(m,i+1);
+                        label.Top = 55 * i;
+                        label.Width = OrderPanelBody.Width;
+                        label.AfterOrder += RefreshQueueList;
+                        OrderPanelBody.Controls.Add(label);
+                        i++; 
+                }
+                if (OrderPanelBody.VerticalScroll.Visible)
+                {
+                    foreach (Control m in OrderPanelBody.Controls)
+                    {
+                        m.Width = m.Width - 20;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region 下载
@@ -351,8 +314,9 @@ namespace MyKTV
             dlabel.Width = TabDownloadList.Width;
             dlabel.Top = 55 * TabDownloadList.Controls.Count;
             TabDownloadList.Controls.Add(dlabel);
-        } 
+        }
         #endregion
 
+       
     }
 }

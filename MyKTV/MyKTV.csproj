@@ -79,6 +79,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="KTVBusiness\DownLoadMTV.cs" />
+    <Compile Include="KTVBusiness\OrderMTV.cs" />
     <Compile Include="KTVBusiness\QueueCall.cs" />
     <Compile Include="KTVBusiness\SearchKTV.cs" />
     <Compile Include="KTVBusiness\Sprite2DShow.cs" />

@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using MyKTV.KTVModel;
+﻿using MyKTV.KTVModel;
 using MyKTV.KTVStatus;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 
 namespace MyKTV.UserControl
 {
     public partial class QueueLabel : DevExpress.XtraEditors.XtraUserControl
     {
+        public event Action AfterSort;
         private int QueueSort { get; set; }
+
         public QueueLabel(KTVQueue model)
         {
             InitializeComponent();
@@ -43,7 +39,8 @@ namespace MyKTV.UserControl
 
         }
 
-        private void QueueLabel_Click(object sender, EventArgs e)
+
+        private void GoTop_Click(object sender, EventArgs e)
         {
             lock (RunTimeData.VideoQueue)
             {
@@ -59,6 +56,12 @@ namespace MyKTV.UserControl
                 temp.Sort = 1;
                 QueueSort = 1;
             }
+            AfterSort?.Invoke();
+        }
+
+        public void HideGoTop()
+        {
+            GoTop.Visible = false;
         }
     }
 }

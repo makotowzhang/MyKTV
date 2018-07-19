@@ -16,11 +16,18 @@ namespace MyKTV.UserControl
 {
     public partial class OrderLabel : DevExpress.XtraEditors.XtraUserControl
     {
+        public event Action AfterOrder;
         private MyMTV OrderMTV { get; set; }
-        public OrderLabel(MyMTV mtv)
+        public OrderLabel(MyMTV mtv,int sort)
         {
             InitializeComponent();
             OrderMTV = mtv;
+            labelSort.Text = sort.ToString();
+            labelName.Text = OrderMTV.MTVName + "-" + OrderMTV.Artist;
+            if (sort % 2 == 0)
+            {
+                Appearance.BackColor = Color.FromArgb(204, 204, 204);
+            }
             if (RunTimeData.VideoQueue.Any(m => m.MTV.Id == Guid.Parse(OrderMTV.Id)))
             {
                 LabelOrder.Appearance.BackColor = Color.Green;
@@ -54,6 +61,7 @@ namespace MyKTV.UserControl
                     }
                 });
                 LabelOrder.Appearance.BackColor = Color.Green;
+                AfterOrder?.Invoke();
             }
         }
     }

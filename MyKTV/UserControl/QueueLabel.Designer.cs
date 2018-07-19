@@ -30,6 +30,7 @@
         {
             this.labelSort = new DevExpress.XtraEditors.LabelControl();
             this.labelName = new DevExpress.XtraEditors.LabelControl();
+            this.GoTop = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
             // 
             // labelSort
@@ -56,16 +57,33 @@
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Name";
             // 
+            // GoTop
+            // 
+            this.GoTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GoTop.Appearance.BackColor = System.Drawing.Color.Red;
+            this.GoTop.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.GoTop.Appearance.ForeColor = System.Drawing.Color.White;
+            this.GoTop.Appearance.Options.UseBackColor = true;
+            this.GoTop.Appearance.Options.UseFont = true;
+            this.GoTop.Appearance.Options.UseForeColor = true;
+            this.GoTop.Location = new System.Drawing.Point(211, 13);
+            this.GoTop.Name = "GoTop";
+            this.GoTop.Size = new System.Drawing.Size(21, 26);
+            this.GoTop.TabIndex = 7;
+            this.GoTop.Text = "顶";
+            this.GoTop.Click += new System.EventHandler(this.GoTop_Click);
+            // 
             // QueueLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.GoTop);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelSort);
             this.Name = "QueueLabel";
             this.Size = new System.Drawing.Size(259, 55);
             this.Load += new System.EventHandler(this.QueueLabel_Load);
-            this.Click += new System.EventHandler(this.QueueLabel_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -75,5 +93,6 @@
 
         private DevExpress.XtraEditors.LabelControl labelSort;
         private DevExpress.XtraEditors.LabelControl labelName;
+        private DevExpress.XtraEditors.LabelControl GoTop;
     }
 }

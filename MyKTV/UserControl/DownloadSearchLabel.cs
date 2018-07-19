@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using MyKTV.KTVModel;
-using MyKTV.KTVEntity;
-using MyKTV.KTVStatus;
+﻿using MyKTV.KTVBusiness;
 using MyKTV.KTVCommon;
-using System.Net;
-using MyKTV.KTVBusiness;
+using MyKTV.KTVEntity;
+using MyKTV.KTVModel;
+using MyKTV.KTVStatus;
+using System;
+using System.Drawing;
+using System.Linq;
 
 namespace MyKTV.UserControl
 {

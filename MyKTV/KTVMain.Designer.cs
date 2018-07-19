@@ -48,18 +48,27 @@
             this.BtnOrg = new DevExpress.XtraEditors.LabelControl();
             this.BtnNext = new DevExpress.XtraEditors.LabelControl();
             this.BtnPause = new DevExpress.XtraEditors.LabelControl();
+            this.OrderPanelTop = new DevExpress.XtraEditors.PanelControl();
+            this.OrderPanelBody = new DevExpress.XtraEditors.PanelControl();
+            this.OrderSearchText = new DevExpress.XtraEditors.TextEdit();
+            this.OrderSearchBtn = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.VideoPanel)).BeginInit();
             this.VideoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KTVPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuPanel)).BeginInit();
             this.MenuPanel.SuspendLayout();
             this.MenuTag.SuspendLayout();
+            this.OrderTab.SuspendLayout();
             this.DownloadTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextMTVSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonPanel)).BeginInit();
             this.ButtonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelTop)).BeginInit();
+            this.OrderPanelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelBody)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderSearchText.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // VideoPanel
@@ -124,6 +133,8 @@
             // 
             // OrderTab
             // 
+            this.OrderTab.Controls.Add(this.OrderPanelBody);
+            this.OrderTab.Controls.Add(this.OrderPanelTop);
             this.OrderTab.Location = new System.Drawing.Point(4, 23);
             this.OrderTab.Name = "OrderTab";
             this.OrderTab.Padding = new System.Windows.Forms.Padding(3);
@@ -318,6 +329,48 @@
             this.BtnPause.TabIndex = 0;
             this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
             // 
+            // OrderPanelTop
+            // 
+            this.OrderPanelTop.Appearance.BackColor = System.Drawing.Color.White;
+            this.OrderPanelTop.Appearance.Options.UseBackColor = true;
+            this.OrderPanelTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.OrderPanelTop.Controls.Add(this.OrderSearchBtn);
+            this.OrderPanelTop.Controls.Add(this.OrderSearchText);
+            this.OrderPanelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OrderPanelTop.Location = new System.Drawing.Point(3, 3);
+            this.OrderPanelTop.Name = "OrderPanelTop";
+            this.OrderPanelTop.Size = new System.Drawing.Size(283, 50);
+            this.OrderPanelTop.TabIndex = 0;
+            // 
+            // OrderPanelBody
+            // 
+            this.OrderPanelBody.Appearance.BackColor = System.Drawing.Color.White;
+            this.OrderPanelBody.Appearance.Options.UseBackColor = true;
+            this.OrderPanelBody.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.OrderPanelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrderPanelBody.Location = new System.Drawing.Point(3, 53);
+            this.OrderPanelBody.Name = "OrderPanelBody";
+            this.OrderPanelBody.Size = new System.Drawing.Size(283, 512);
+            this.OrderPanelBody.TabIndex = 1;
+            // 
+            // OrderSearchText
+            // 
+            this.OrderSearchText.Location = new System.Drawing.Point(4, 9);
+            this.OrderSearchText.Name = "OrderSearchText";
+            this.OrderSearchText.Properties.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderSearchText.Properties.Appearance.Options.UseFont = true;
+            this.OrderSearchText.Size = new System.Drawing.Size(214, 30);
+            this.OrderSearchText.TabIndex = 1;
+            // 
+            // OrderSearchBtn
+            // 
+            this.OrderSearchBtn.Location = new System.Drawing.Point(224, 9);
+            this.OrderSearchBtn.Name = "OrderSearchBtn";
+            this.OrderSearchBtn.Size = new System.Drawing.Size(57, 30);
+            this.OrderSearchBtn.TabIndex = 2;
+            this.OrderSearchBtn.Text = "搜索";
+            this.OrderSearchBtn.Click += new System.EventHandler(this.OrderSearchBtn_Click);
+            // 
             // KTVMain
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -338,6 +391,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MenuPanel)).EndInit();
             this.MenuPanel.ResumeLayout(false);
             this.MenuTag.ResumeLayout(false);
+            this.OrderTab.ResumeLayout(false);
             this.DownloadTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -345,6 +399,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ButtonPanel)).EndInit();
             this.ButtonPanel.ResumeLayout(false);
             this.ButtonPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelTop)).EndInit();
+            this.OrderPanelTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelBody)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderSearchText.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,5 +428,9 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.Panel DownSearchPanel;
         private System.Windows.Forms.TabPage TabDownloadList;
+        private DevExpress.XtraEditors.PanelControl OrderPanelBody;
+        private DevExpress.XtraEditors.PanelControl OrderPanelTop;
+        private DevExpress.XtraEditors.SimpleButton OrderSearchBtn;
+        private DevExpress.XtraEditors.TextEdit OrderSearchText;
     }
 }
