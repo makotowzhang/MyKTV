@@ -24,5 +24,15 @@ namespace MyKTV.KTVCommon
             }
             return dir + "\\";
         }
+
+        public static string GetScreenShotDir(string id)
+        {
+            string dir = GetRootDirectory() + "\\screenshot\\" + id;
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            return dir + "\\";
+        }
     }
 }

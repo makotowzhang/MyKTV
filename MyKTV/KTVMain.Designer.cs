@@ -35,6 +35,10 @@
             this.MenuTag = new System.Windows.Forms.TabControl();
             this.QueueTab = new System.Windows.Forms.TabPage();
             this.OrderTab = new System.Windows.Forms.TabPage();
+            this.OrderPanelBody = new DevExpress.XtraEditors.PanelControl();
+            this.OrderPanelTop = new DevExpress.XtraEditors.PanelControl();
+            this.OrderSearchBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.OrderSearchText = new DevExpress.XtraEditors.TextEdit();
             this.DownloadTab = new System.Windows.Forms.TabPage();
             this.DownSearchPanel = new System.Windows.Forms.Panel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -48,10 +52,6 @@
             this.BtnOrg = new DevExpress.XtraEditors.LabelControl();
             this.BtnNext = new DevExpress.XtraEditors.LabelControl();
             this.BtnPause = new DevExpress.XtraEditors.LabelControl();
-            this.OrderPanelTop = new DevExpress.XtraEditors.PanelControl();
-            this.OrderPanelBody = new DevExpress.XtraEditors.PanelControl();
-            this.OrderSearchText = new DevExpress.XtraEditors.TextEdit();
-            this.OrderSearchBtn = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.VideoPanel)).BeginInit();
             this.VideoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KTVPlayer)).BeginInit();
@@ -59,16 +59,16 @@
             this.MenuPanel.SuspendLayout();
             this.MenuTag.SuspendLayout();
             this.OrderTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelBody)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelTop)).BeginInit();
+            this.OrderPanelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderSearchText.Properties)).BeginInit();
             this.DownloadTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextMTVSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonPanel)).BeginInit();
             this.ButtonPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelTop)).BeginInit();
-            this.OrderPanelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelBody)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderSearchText.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // VideoPanel
@@ -94,6 +94,8 @@
             this.KTVPlayer.Size = new System.Drawing.Size(687, 476);
             this.KTVPlayer.TabIndex = 0;
             this.KTVPlayer.OnMessage += new AxAPlayer3Lib._IPlayerEvents_OnMessageEventHandler(this.KTVPlayer_OnMessage);
+            this.KTVPlayer.OnStateChanged += new AxAPlayer3Lib._IPlayerEvents_OnStateChangedEventHandler(this.KTVPlayer_OnStateChanged);
+            this.KTVPlayer.OnOpenSucceeded += new System.EventHandler(this.KTVPlayer_OnOpenSucceeded);
             this.KTVPlayer.OnEvent += new AxAPlayer3Lib._IPlayerEvents_OnEventEventHandler(this.KTVPlayer_OnEvent);
             // 
             // MenuPanel
@@ -142,6 +144,48 @@
             this.OrderTab.TabIndex = 1;
             this.OrderTab.Text = "点歌";
             this.OrderTab.UseVisualStyleBackColor = true;
+            // 
+            // OrderPanelBody
+            // 
+            this.OrderPanelBody.Appearance.BackColor = System.Drawing.Color.White;
+            this.OrderPanelBody.Appearance.Options.UseBackColor = true;
+            this.OrderPanelBody.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.OrderPanelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrderPanelBody.Location = new System.Drawing.Point(3, 53);
+            this.OrderPanelBody.Name = "OrderPanelBody";
+            this.OrderPanelBody.Size = new System.Drawing.Size(283, 512);
+            this.OrderPanelBody.TabIndex = 1;
+            // 
+            // OrderPanelTop
+            // 
+            this.OrderPanelTop.Appearance.BackColor = System.Drawing.Color.White;
+            this.OrderPanelTop.Appearance.Options.UseBackColor = true;
+            this.OrderPanelTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.OrderPanelTop.Controls.Add(this.OrderSearchBtn);
+            this.OrderPanelTop.Controls.Add(this.OrderSearchText);
+            this.OrderPanelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OrderPanelTop.Location = new System.Drawing.Point(3, 3);
+            this.OrderPanelTop.Name = "OrderPanelTop";
+            this.OrderPanelTop.Size = new System.Drawing.Size(283, 50);
+            this.OrderPanelTop.TabIndex = 0;
+            // 
+            // OrderSearchBtn
+            // 
+            this.OrderSearchBtn.Location = new System.Drawing.Point(224, 9);
+            this.OrderSearchBtn.Name = "OrderSearchBtn";
+            this.OrderSearchBtn.Size = new System.Drawing.Size(57, 30);
+            this.OrderSearchBtn.TabIndex = 2;
+            this.OrderSearchBtn.Text = "搜索";
+            this.OrderSearchBtn.Click += new System.EventHandler(this.OrderSearchBtn_Click);
+            // 
+            // OrderSearchText
+            // 
+            this.OrderSearchText.Location = new System.Drawing.Point(4, 9);
+            this.OrderSearchText.Name = "OrderSearchText";
+            this.OrderSearchText.Properties.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderSearchText.Properties.Appearance.Options.UseFont = true;
+            this.OrderSearchText.Size = new System.Drawing.Size(214, 30);
+            this.OrderSearchText.TabIndex = 1;
             // 
             // DownloadTab
             // 
@@ -274,6 +318,7 @@
             this.BtnAcc.Size = new System.Drawing.Size(64, 64);
             this.BtnAcc.TabIndex = 5;
             this.BtnAcc.Text = "  伴唱";
+            this.BtnAcc.Click += new System.EventHandler(this.BtnAcc_Click);
             // 
             // BtnOrg
             // 
@@ -293,6 +338,7 @@
             this.BtnOrg.Size = new System.Drawing.Size(64, 64);
             this.BtnOrg.TabIndex = 4;
             this.BtnOrg.Text = "  原唱";
+            this.BtnOrg.Click += new System.EventHandler(this.BtnOrg_Click);
             // 
             // BtnNext
             // 
@@ -329,48 +375,6 @@
             this.BtnPause.TabIndex = 0;
             this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
             // 
-            // OrderPanelTop
-            // 
-            this.OrderPanelTop.Appearance.BackColor = System.Drawing.Color.White;
-            this.OrderPanelTop.Appearance.Options.UseBackColor = true;
-            this.OrderPanelTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.OrderPanelTop.Controls.Add(this.OrderSearchBtn);
-            this.OrderPanelTop.Controls.Add(this.OrderSearchText);
-            this.OrderPanelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OrderPanelTop.Location = new System.Drawing.Point(3, 3);
-            this.OrderPanelTop.Name = "OrderPanelTop";
-            this.OrderPanelTop.Size = new System.Drawing.Size(283, 50);
-            this.OrderPanelTop.TabIndex = 0;
-            // 
-            // OrderPanelBody
-            // 
-            this.OrderPanelBody.Appearance.BackColor = System.Drawing.Color.White;
-            this.OrderPanelBody.Appearance.Options.UseBackColor = true;
-            this.OrderPanelBody.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.OrderPanelBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrderPanelBody.Location = new System.Drawing.Point(3, 53);
-            this.OrderPanelBody.Name = "OrderPanelBody";
-            this.OrderPanelBody.Size = new System.Drawing.Size(283, 512);
-            this.OrderPanelBody.TabIndex = 1;
-            // 
-            // OrderSearchText
-            // 
-            this.OrderSearchText.Location = new System.Drawing.Point(4, 9);
-            this.OrderSearchText.Name = "OrderSearchText";
-            this.OrderSearchText.Properties.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderSearchText.Properties.Appearance.Options.UseFont = true;
-            this.OrderSearchText.Size = new System.Drawing.Size(214, 30);
-            this.OrderSearchText.TabIndex = 1;
-            // 
-            // OrderSearchBtn
-            // 
-            this.OrderSearchBtn.Location = new System.Drawing.Point(224, 9);
-            this.OrderSearchBtn.Name = "OrderSearchBtn";
-            this.OrderSearchBtn.Size = new System.Drawing.Size(57, 30);
-            this.OrderSearchBtn.TabIndex = 2;
-            this.OrderSearchBtn.Text = "搜索";
-            this.OrderSearchBtn.Click += new System.EventHandler(this.OrderSearchBtn_Click);
-            // 
             // KTVMain
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -392,6 +396,10 @@
             this.MenuPanel.ResumeLayout(false);
             this.MenuTag.ResumeLayout(false);
             this.OrderTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelBody)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelTop)).EndInit();
+            this.OrderPanelTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OrderSearchText.Properties)).EndInit();
             this.DownloadTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -399,10 +407,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ButtonPanel)).EndInit();
             this.ButtonPanel.ResumeLayout(false);
             this.ButtonPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelTop)).EndInit();
-            this.OrderPanelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.OrderPanelBody)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderSearchText.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

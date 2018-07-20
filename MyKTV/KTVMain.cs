@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
+using MyKTV.KTVCommon;
 
 namespace MyKTV
 {
@@ -83,39 +85,27 @@ namespace MyKTV
                 _volumeReduce = value;
             }
         }
+
         #endregion
 
 
         private void KTVMain_Load(object sender, EventArgs e)
         {
-            //new Task(() => 
-            //{
-            //    while (true)
-            //    {
-            //        Sprite2DShow.DeleteVideoSprite(KTVPlayer);
-            //        Thread.Sleep(500);
-            //    }
-            //}).Start();
+            new Task(() =>
+            {
+                while (true)
+                {
+                    Sprite2DShow.DeleteVideoSprite(KTVPlayer);
+                    Thread.Sleep(500);
+                }
+            }).Start();
             //KTVPlayer.SetVolume(50);
             //KTVPlayer.Open("http://rtm-live.glueapi.io/smil:ch001.smil/chunklist_b329000_sleng.m3u8");
-       
-
-            foreach (var m in RunTimeData.VideoQueue)
-            {
-                var label = new MyKTV.UserControl.QueueLabel(m);
-                label.Top = 55 * m.Sort;
-                label.Width = QueueTab.Width;
-                label.Click += (s, ev) => 
-                {
-                    RefreshQueueList();
-                };
-                QueueTab.Controls.Add(label);
-            }
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ColorTranslator.ToWin32(Color.White).ToString());
+            NextMTV();
         }
 
         private void BtnPause_Click(object sender, EventArgs e)
@@ -208,9 +198,8 @@ namespace MyKTV
         {
 
         }
-        
-        #region 已点
 
+        #region 已点
         private void RefreshQueueList()
         {
             QueueTab.Controls.Clear();
@@ -220,11 +209,28 @@ namespace MyKTV
                 label.Top = 55 * m.Sort;
                 label.Width = QueueTab.Width;
                 label.AfterSort += RefreshQueueList;
+                if (m.Sort == 0)
+                {
+                    label.BackColor = Color.Green;
+                }
                 if (m.Sort == 0 || m.Sort == 1)
                 {
                     label.HideGoTop();
                 }
                 QueueTab.Controls.Add(label);
+            }
+        }
+
+        private void OpenMTV()
+        {
+            if (KTVPlayer.GetState() == 0)
+            {
+                lock (RunTimeData.VideoQueue)
+                {
+                    var mtv = RunTimeData.VideoQueue.FirstOrDefault(m => m.Sort == 0)?.MTV;
+                    var playPath = mtv?.SavePath.Replace("~", PathHelper.GetDownloadDir(mtv.Id));
+                    KTVPlayer.Open(playPath);
+                }
             }
         }
         #endregion
@@ -243,13 +249,14 @@ namespace MyKTV
                 int i = 0;
                 foreach (var m in OrderMTV.SearchMyMTV(orderStr))
                 {
-                    
-                        var label = new UserControl.OrderLabel(m,i+1);
-                        label.Top = 55 * i;
-                        label.Width = OrderPanelBody.Width;
-                        label.AfterOrder += RefreshQueueList;
-                        OrderPanelBody.Controls.Add(label);
-                        i++; 
+
+                    var label = new UserControl.OrderLabel(m, i + 1);
+                    label.Top = 55 * i;
+                    label.Width = OrderPanelBody.Width;
+                    label.AfterOrder += RefreshQueueList;
+                    label.AfterOrder += OpenMTV;
+                    OrderPanelBody.Controls.Add(label);
+                    i++;
                 }
                 if (OrderPanelBody.VerticalScroll.Visible)
                 {
@@ -263,7 +270,6 @@ namespace MyKTV
         #endregion
 
         #region 下载
-
         private void BtnMTVSearch_Click(object sender, EventArgs e)
         {
             DownSearchPanel.Controls.Clear();
@@ -308,7 +314,6 @@ namespace MyKTV
         #endregion
 
         #region 下载列表
-
         private void Label_DownloadAddEvent(UserControl.DownloadLabel dlabel)
         {
             dlabel.Width = TabDownloadList.Width;
@@ -317,6 +322,47 @@ namespace MyKTV
         }
         #endregion
 
-       
+        private void NextMTV()
+        {
+            lock (RunTimeData.VideoQueue)
+            {
+                RunTimeData.VideoQueue.RemoveAll(m => m.Sort == 0);
+                RunTimeData.VideoQueue.ForEach(m => m.Sort--);
+                RefreshQueueList();
+                var mtv = RunTimeData.VideoQueue.FirstOrDefault(m => m.Sort == 0)?.MTV;
+                var playPath = mtv?.SavePath.Replace("~", PathHelper.GetDownloadDir(mtv.Id));
+                KTVPlayer.Open(playPath);
+            }
+        }
+
+        private void KTVPlayer_OnStateChanged(object sender, AxAPlayer3Lib._IPlayerEvents_OnStateChangedEvent e)
+        {
+            if (e.nNewState == 0 && KTVPlayer.GetConfig(7) == "0")
+            {
+                NextMTV();
+            }
+        }
+
+        #region 原唱
+        private void BtnOrg_Click(object sender, EventArgs e)
+        {
+            KTVPlayer.SetConfig(403, "1");
+            RunTimeStatus.AudioTrack = 1;
+        }
+        #endregion
+        #region 伴唱
+        private void BtnAcc_Click(object sender, EventArgs e)
+        {
+            KTVPlayer.SetConfig(403, "2");
+            RunTimeStatus.AudioTrack = 2;
+        }
+        #endregion
+
+        #region Open成功之后
+        private void KTVPlayer_OnOpenSucceeded(object sender, EventArgs e)
+        {
+            KTVPlayer.SetConfig(403, RunTimeStatus.AudioTrack.ToString());
+        } 
+        #endregion
     }
 }

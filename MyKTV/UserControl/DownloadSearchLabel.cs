@@ -47,7 +47,7 @@ namespace MyKTV.UserControl
                 MTV = mtvInfo,
                 DownloadType = KTVEnum.MTVDownloadType.Cloud,
                 WebUrl = mtvInfo.CloudDiskUrl,
-                SavePath = PathHelper.GetDownloadDir(mtvInfo.Id)  + mtvInfo.MTVName + "-" + mtvInfo.Artist + ".mkv",
+                SavePath = "~" + mtvInfo.MTVName + "-" + mtvInfo.Artist + ".mkv",
                 Sort = RunTimeData.DownloadQueue.Count > 0 ? RunTimeData.DownloadQueue.Max(m => m.Sort) + 1 : 1
             };
             DownloadLabel dlabel = new DownloadLabel(dinfo);

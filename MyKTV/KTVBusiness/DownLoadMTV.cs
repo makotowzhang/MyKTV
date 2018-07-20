@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using MyKTV.KTVModel;
 using MyKTV.KTVEntity;
+using MyKTV.KTVCommon;
 
 namespace MyKTV.KTVBusiness
 {
@@ -40,22 +41,24 @@ namespace MyKTV.KTVBusiness
                             di.IsCompelet = true;
                             using (var db=new KTVDataBase())
                             {
-                                db.MyMTV.Add(new MyMTV()
+                                var entity = new MyMTV()
                                 {
-                                    Id=di.MTV.Id.ToString(),
-                                    Artist=di.MTV.Artist,
-                                    CloudDiskUrl=di.MTV.CloudDiskUrl,
-                                    DetailUrl= di.MTV.DetailUrl,
-                                    ED2KUrl= di.MTV.ED2KUrl,
-                                    FileName= di.MTV.MTVName+"-"+ di.MTV.Artist+".mkv",
-                                    MTVImage= di.MTV.MTVImage,
-                                    MTVName= di.MTV.MTVName,
-                                    SavePath=di.SavePath,
-                                    MTVSize= di.MTV.MTVSize,
-                                    ServerUrl= di.MTV.ServerUrl,
-                                    SouceFileName= di.MTV.SouceFileName
-                                });
+                                    Id = di.MTV.Id.ToString(),
+                                    Artist = di.MTV.Artist,
+                                    CloudDiskUrl = di.MTV.CloudDiskUrl,
+                                    DetailUrl = di.MTV.DetailUrl,
+                                    ED2KUrl = di.MTV.ED2KUrl,
+                                    FileName = di.MTV.MTVName + "-" + di.MTV.Artist + ".mkv",
+                                    MTVImage = di.MTV.MTVImage,
+                                    MTVName = di.MTV.MTVName,
+                                    SavePath = di.SavePath,
+                                    MTVSize = di.MTV.MTVSize,
+                                    ServerUrl = di.MTV.ServerUrl,
+                                    SouceFileName = di.MTV.SouceFileName
+                                };
+                                db.MyMTV.Add(entity);
                                 db.SaveChanges();
+                                VideoScreenShot.ShotMTV(entity);
                             }
                             BeginDownload();
                         };
@@ -68,7 +71,7 @@ namespace MyKTV.KTVBusiness
                             di.WebUrl = di.MTV.ServerUrl;
                         }
                         di.IsDownloading = true;
-                        client.DownloadFileAsync(new Uri(di.WebUrl), di.SavePath);
+                        client.DownloadFileAsync(new Uri(di.WebUrl), di.SavePath.Replace("~", PathHelper.GetDownloadDir(di.MTV.Id)));
                     }
                 }
             }

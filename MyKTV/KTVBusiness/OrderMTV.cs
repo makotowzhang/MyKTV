@@ -10,7 +10,7 @@ namespace MyKTV.KTVBusiness
         {
             using (KTVDataBase db = new KTVDataBase())
             {
-                var temp = db.MyMTV.Where(m => m.MTVName.Contains(MTVName) || m.Artist.Contains(MTVName));
+                var temp = db.MyMTV.Where(m => m.MTVName.Contains(MTVName) || m.Artist.Contains(MTVName)).OrderBy(m=>m.MTVName);
                 return temp.ToList();
             }
         }
