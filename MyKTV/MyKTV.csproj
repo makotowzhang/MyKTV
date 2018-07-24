@@ -33,6 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -70,6 +72,12 @@
   <ItemGroup>
     <Compile Include="Controls\TransparentLabel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserForm\MTVPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserForm\MTVPreview.Designer.cs">
+      <DependentUpon>MTVPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="KTVBusiness\DownLoadMTV.cs" />
     <Compile Include="KTVBusiness\OrderMTV.cs" />
@@ -124,6 +132,9 @@
     <Compile Include="UserControl\QueueLabel.Designer.cs">
       <DependentUpon>QueueLabel.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserForm\MTVPreview.resx">
+      <DependentUpon>MTVPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KTVMain.resx">
       <DependentUpon>KTVMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,7 +250,9 @@
   <ItemGroup>
     <None Include="Resources\volume_reduce.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\PicArrow.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Microphone.png" />
   </ItemGroup>

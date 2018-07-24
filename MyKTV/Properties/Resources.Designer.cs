@@ -143,6 +143,16 @@ namespace MyKTV.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap PicArrow {
+            get {
+                object obj = ResourceManager.GetObject("PicArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap play_sprite {
             get {
                 object obj = ResourceManager.GetObject("play_sprite", resourceCulture);

@@ -64,5 +64,12 @@ namespace MyKTV.UserControl
                 AfterOrder?.Invoke();
             }
         }
+
+        private void LabelPreview_Click(object sender, EventArgs e)
+        {
+           
+            
+            UserForm.MTVPreview.GetViewer(OrderMTV).Show();
+        }
     }
 }

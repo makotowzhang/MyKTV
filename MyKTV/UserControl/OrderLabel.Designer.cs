@@ -31,6 +31,7 @@
             this.labelName = new DevExpress.XtraEditors.LabelControl();
             this.labelSort = new DevExpress.XtraEditors.LabelControl();
             this.LabelOrder = new DevExpress.XtraEditors.LabelControl();
+            this.LabelPreview = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
             // 
             // labelName
@@ -69,17 +70,37 @@
             this.LabelOrder.Appearance.Options.UseBackColor = true;
             this.LabelOrder.Appearance.Options.UseFont = true;
             this.LabelOrder.Appearance.Options.UseForeColor = true;
-            this.LabelOrder.Location = new System.Drawing.Point(207, 13);
+            this.LabelOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelOrder.Location = new System.Drawing.Point(210, 13);
             this.LabelOrder.Name = "LabelOrder";
             this.LabelOrder.Size = new System.Drawing.Size(21, 26);
             this.LabelOrder.TabIndex = 6;
             this.LabelOrder.Text = "点";
             this.LabelOrder.Click += new System.EventHandler(this.LabelOrder_Click);
             // 
+            // LabelPreview
+            // 
+            this.LabelPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelPreview.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.LabelPreview.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LabelPreview.Appearance.ForeColor = System.Drawing.Color.White;
+            this.LabelPreview.Appearance.Options.UseBackColor = true;
+            this.LabelPreview.Appearance.Options.UseFont = true;
+            this.LabelPreview.Appearance.Options.UseForeColor = true;
+            this.LabelPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelPreview.Location = new System.Drawing.Point(179, 13);
+            this.LabelPreview.Name = "LabelPreview";
+            this.LabelPreview.Size = new System.Drawing.Size(21, 26);
+            this.LabelPreview.TabIndex = 7;
+            this.LabelPreview.Text = "预";
+            this.LabelPreview.Click += new System.EventHandler(this.LabelPreview_Click);
+            // 
             // OrderLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.LabelPreview);
             this.Controls.Add(this.LabelOrder);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelSort);
@@ -95,5 +116,6 @@
         private DevExpress.XtraEditors.LabelControl labelName;
         private DevExpress.XtraEditors.LabelControl labelSort;
         private DevExpress.XtraEditors.LabelControl LabelOrder;
+        private DevExpress.XtraEditors.LabelControl LabelPreview;
     }
 }

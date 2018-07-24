@@ -67,6 +67,7 @@
             this.GoTop.Appearance.Options.UseBackColor = true;
             this.GoTop.Appearance.Options.UseFont = true;
             this.GoTop.Appearance.Options.UseForeColor = true;
+            this.GoTop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoTop.Location = new System.Drawing.Point(211, 13);
             this.GoTop.Name = "GoTop";
             this.GoTop.Size = new System.Drawing.Size(21, 26);

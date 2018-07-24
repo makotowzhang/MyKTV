@@ -70,6 +70,7 @@
             this.LabelServerDownload.Appearance.Options.UseBackColor = true;
             this.LabelServerDownload.Appearance.Options.UseFont = true;
             this.LabelServerDownload.Appearance.Options.UseForeColor = true;
+            this.LabelServerDownload.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelServerDownload.Location = new System.Drawing.Point(213, 13);
             this.LabelServerDownload.Name = "LabelServerDownload";
             this.LabelServerDownload.Size = new System.Drawing.Size(21, 26);
@@ -87,6 +88,7 @@
             this.LabelCloudDownload.Appearance.Options.UseBackColor = true;
             this.LabelCloudDownload.Appearance.Options.UseFont = true;
             this.LabelCloudDownload.Appearance.Options.UseForeColor = true;
+            this.LabelCloudDownload.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelCloudDownload.Location = new System.Drawing.Point(178, 13);
             this.LabelCloudDownload.Name = "LabelCloudDownload";
             this.LabelCloudDownload.Size = new System.Drawing.Size(21, 26);
