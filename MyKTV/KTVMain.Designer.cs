@@ -317,7 +317,7 @@
             this.BtnAcc.Name = "BtnAcc";
             this.BtnAcc.Size = new System.Drawing.Size(64, 64);
             this.BtnAcc.TabIndex = 5;
-            this.BtnAcc.Text = "  伴唱";
+            this.BtnAcc.Text = "  伴奏";
             this.BtnAcc.Click += new System.EventHandler(this.BtnAcc_Click);
             // 
             // BtnOrg

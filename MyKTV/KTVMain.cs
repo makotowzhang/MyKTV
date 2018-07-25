@@ -346,15 +346,15 @@ namespace MyKTV
         #region 原唱
         private void BtnOrg_Click(object sender, EventArgs e)
         {
-            KTVPlayer.SetConfig(403, "1");
-            RunTimeStatus.AudioTrack = 1;
+            KTVPlayer.SetConfig(403, "0");
+            RunTimeStatus.AudioTrack = 0;
         }
         #endregion
-        #region 伴唱
+        #region 伴奏
         private void BtnAcc_Click(object sender, EventArgs e)
         {
-            KTVPlayer.SetConfig(403, "2");
-            RunTimeStatus.AudioTrack = 2;
+            KTVPlayer.SetConfig(403, "1");
+            RunTimeStatus.AudioTrack = 1;
         }
         #endregion
 
